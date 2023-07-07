@@ -10,15 +10,9 @@ if ($conn->connect_error) {
   die("Koneksi gagal : " . $conn->connect_error);
 }
 
-$dbname = "jwd23";
-$sql = "CREATE DATABASE " . $dbname;
-if (!mysqli_select_db($conn, $dbname)) {
-  if ($conn->query($sql) === TRUE) {
-    echo "Database JWD23 berhasil dibuat!";
-  } else {
-    echo "Error membuat database : " . $conn->error;
-  }
-}
+$dbname = "jwda23";
+$sql = "CREATE DATABASE IF NOT EXISTS " . $dbname;
+$conn->query($sql);
 $conn->close();
 
 
@@ -27,24 +21,17 @@ if ($conn->connect_error) {
   die("Koneksi gagal : " . $conn->connect_error);
 }
 
-$sql = "CREATE TABLE user (
+$sql = "CREATE TABLE IF NOT EXISTS user (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(100) NOT NULL UNIQUE,
 password VARCHAR(255) NOT NULL,
 nama VARCHAR(50) NOT NULL,
 umur INTEGER(11) NOT NULL,
 kelas VARCHAR(20) NOT NULL,
-email VARCHAR(50),
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+email VARCHAR(50)
 )";
 
-if (!mysqli_query($conn, "DESCRIBE `user`")) {
-  if ($conn->query($sql) === TRUE) {
-    echo "Tabel User berhasil dibuat!";
-  } else {
-    echo "Error membuat tabel: " . $conn->error;
-  }
-}
+$conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -164,10 +151,9 @@ if (!mysqli_query($conn, "DESCRIBE `user`")) {
       $_SESSION['status'] = 300;
     } else {
 
-      $sql = "INSERT INTO user(username, password, nama, kelas, umur, email)
-VALUES ('$username', '$password', '$nama', '$kelas', '$umur', '$email')";
+      $sql = "INSERT INTO user(username, password, nama, kelas, umur, email) VALUES ('$username', '$password', '$nama', '$kelas', '$umur', '$email')";
 
-      if ($conn->query($sql) === TRUE) {
+      if ($conn->query($sql)) {
         $_SESSION['pesan'] = "Data Berhasil Disimpan!";
         $_SESSION['status'] = 200;
       } else {
