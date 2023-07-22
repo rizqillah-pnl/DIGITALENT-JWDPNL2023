@@ -1,0 +1,6 @@
+1. Buka Terminal pada folder CI-4
+2. Ketik php spark serve dan enter
+3. copy link yang diberikan
+4. Buka file .env
+5. atur app.BaseUrl sesuai dengan link yang telah dicopy
+6. Buka link tersebut pada browser

@@ -1,0 +1,38 @@
+table thead>tr>th.sort:before,
+table thead>tr>th.sort:before,
+table thead>tr>th.sort:before,
+table thead>tr>th.sort:before,
+table thead>tr>th.sort:before,
+table thead>tr>td:before,
+table thead>tr>td:before,
+table thead>tr>td:before,
+table thead>tr>td:before,
+table thead>tr>td:before {
+  bottom: 50%;
+}
+
+table thead>tr>th.sort:after,
+table thead>tr>th.sort:after,
+table thead>tr>th.sort:after,
+table thead>tr>th.sort:after,
+table thead>tr>th.sort:after,
+table thead>tr>td:after,
+table thead>tr>td:after,
+table thead>tr>td:after,
+table thead>tr>td:after,
+table thead>tr>td:after {
+  top: 50%;
+  /* content: "▼"; */
+  content: "▼" /""
+}
+
+table thead>tr>th.sort:before,
+table thead>tr>th.sort:after,
+table thead>tr>td:before,
+table thead>tr>td:after {
+  opacity: .6;
+}
+
+th.sort {
+  cursor: pointer;
+}

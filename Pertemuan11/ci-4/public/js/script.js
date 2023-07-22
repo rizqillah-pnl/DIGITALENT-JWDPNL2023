@@ -2,7 +2,7 @@ var search = document.getElementById("search")
 var content = document.getElementById("content")
 
 search.addEventListener('keyup', function () {
-  $.post("search.php", {
+  $.post("/mahasiswa/search", {
     search: search.value,
   }, function (data) {
     content.innerHTML = data;
@@ -12,8 +12,13 @@ search.addEventListener('keyup', function () {
 function editxml(key, id, kolom) {
   let val = document.getElementById(key + id);
   let old_isi = val.innerHTML;
+  let type = 'text';
+  if (kolom == 1) {
+    type = 'number';
+  }
+
   if (!old_isi.includes('input')) {
-    document.getElementById(key + id).innerHTML = `<input type='text' class='form-control' value='` + old_isi + `' id='input${key}${id}' onfocus="var val=this.value; this.value=''; this.value= val;"></input>`;
+    document.getElementById(key + id).innerHTML = `<input type='` + type + `' class='form-control' value='` + old_isi + `' id='input${key}${id}' onfocus="var val=this.value; this.value=''; this.value= val;"></input>`;
     let new_input = document.getElementById('input' + key + id);
     new_input.focus();
     let func = false;
