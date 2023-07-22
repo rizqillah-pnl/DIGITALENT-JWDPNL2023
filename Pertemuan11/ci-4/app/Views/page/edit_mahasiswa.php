@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 <h1 class="mt-3 mb-3 text-center">Edit Data Mahasiswa</h1>
-<a href="<?= base_url('/'); ?>" class="btn btn-primary mb-4"><i class="bi bi-arrow-left"></i> Kembali</a>
+<a href="<?= base_url('/mahasiswa'); ?>" class="btn btn-primary mb-4"><i class="bi bi-arrow-left"></i> Kembali</a>
 <form action="<?= base_url('/mahasiswa/update/'); ?>/<?= $id; ?>" method="post">
   <div class="mb-3">
     <label for="nim" class="form-label">NIM <span class="text-danger">*</span></label>

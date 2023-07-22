@@ -17,14 +17,13 @@ class Mahasiswa extends BaseController
         $currentPage = $this->request->getVar('page_mahasiswa') ? $this->request->getVar('page_mahasiswa') : 1;
 
         $data = [
-            'title' => 'Dashboard',
+            'title' => 'Data Mahasiswa',
             'mahasiswa' => $this->mahasiswaModel->orderBy('created_at', 'desc')->paginate(10, 'mahasiswa'),
             'pager' => $this->mahasiswaModel->pager,
             'currentPage' => $currentPage,
-            'count' => $this->mahasiswaModel->countAllResults()
         ];
 
-        return view('page/dashboard', $data);
+        return view('page/mahasiswa', $data);
     }
 
     public function create()
@@ -99,15 +98,16 @@ class Mahasiswa extends BaseController
         return redirect()->back();
     }
 
-    public function search()
+    public function searchAjax()
     {
         $value = $this->request->getVar('search');
         $currentPage = $this->request->getVar('page_mahasiswa') ? $this->request->getVar('page_mahasiswa') : 1;
+
         $data = [
-            'data' => $this->mahasiswaModel->like('nim', $value)->orLike('nama', $value)->orLike('prodi', $value)->orderBy('created_at', 'desc')->paginate(10, 'mahasiswa'),
+            'title' => 'Data Mahasiswa',
+            'mahasiswa' => $this->mahasiswaModel->like('nim', $value)->orLike('nama', $value)->orLike('prodi', $value)->orderBy('created_at', 'desc')->paginate(10, 'mahasiswa'),
             'pager' => $this->mahasiswaModel->pager,
             'currentPage' => $currentPage,
-            'count' => $this->mahasiswaModel->countAllResults()
         ];
 
 

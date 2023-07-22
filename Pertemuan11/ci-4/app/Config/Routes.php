@@ -32,9 +32,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/register', 'Auth::register');
 $routes->get('/login', 'Auth::index');
+$routes->get('/', 'Mahasiswa::index');
 $routes->get('/mahasiswa', 'Mahasiswa::index');
 $routes->get('/mahasiswa/create', 'Mahasiswa::create');
 $routes->post('/mahasiswa/insert', 'Mahasiswa::store');
+// $routes->get('/mahasiswa/searchAjax', 'Mahasiswa::search_result');
 // $routes->post('/mahasiswa/search', 'Mahasiswa::search');
 
 /*

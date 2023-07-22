@@ -9,9 +9,9 @@
     </tr>
   </thead>
   <tbody>
-    <?php if ($data) :
+    <?php if ($mahasiswa) :
       $i = 1 + (10 * ($currentPage - 1));
-      foreach ($data as $index => $row) : ?>
+      foreach ($mahasiswa as $index => $row) : ?>
         <tr>
           <td><?= $i; ?></td>
           <td id="nim<?= $row['id']; ?>" ondblclick="editxml('nim', '<?= $row['id']; ?>', 1)" title="Klik 2 kali untuk edit"><?= $row['nim'] ?></td>
@@ -33,5 +33,5 @@
     <?php endif; ?>
   </tbody>
 </table>
-<p colspan="5">Showing <?= (1 + (10 * ($currentPage - 1))) . ' to ' . ((1 + (10 * ($currentPage - 1))) + count($mahasiswa)) . ' of ' . $count . ' entries'; ?> </p>
+<p colspan="5">Showing <?= (1 + (10 * ($currentPage - 1))) . ' to ' . ((1 + (10 * ($currentPage - 1))) + count($mahasiswa)) - 1 . ' of ' . $pager->getDetails('mahasiswa')['total'] . ' entries'; ?> </p>
 <?= $pager->links('mahasiswa', 'my_pager'); ?>

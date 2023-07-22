@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <h1 class="mt-3 mb-3 text-center">Tambah Data Mahasiswa</h1>
-<a href="<?= base_url('/'); ?>" class="btn btn-primary mb-4"><i class="bi bi-arrow-left"></i> Kembali</a>
+<a href="<?= base_url('/mahasiswa'); ?>" class="btn btn-primary mb-4"><i class="bi bi-arrow-left"></i> Kembali</a>
 <form action="<?= base_url('/mahasiswa/insert'); ?>" method="post" autocomplete="off">
   <?= csrf_field(); ?>
   <div class="mb-3">

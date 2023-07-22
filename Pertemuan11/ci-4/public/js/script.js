@@ -2,7 +2,7 @@ var search = document.getElementById("search")
 var content = document.getElementById("content")
 
 search.addEventListener('keyup', function () {
-  $.post("/mahasiswa/search", {
+  $.post("/mahasiswa/searchAjax", {
     search: search.value,
   }, function (data) {
     content.innerHTML = data;
