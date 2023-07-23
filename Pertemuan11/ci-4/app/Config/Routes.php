@@ -15,7 +15,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
@@ -30,14 +30,30 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/register', 'Auth::register');
-$routes->get('/login', 'Auth::index');
-$routes->get('/', 'Mahasiswa::index');
-$routes->get('/mahasiswa', 'Mahasiswa::index');
-$routes->get('/mahasiswa/create', 'Mahasiswa::create');
-$routes->post('/mahasiswa/insert', 'Mahasiswa::store');
-// $routes->get('/mahasiswa/searchAjax', 'Mahasiswa::search_result');
-// $routes->post('/mahasiswa/search', 'Mahasiswa::search');
+$routes->get('/', 'Home::index');
+$routes->group('login', ['filter' => 'guest'], function ($routes) {
+    $routes->get('/', 'Login::index',);
+    $routes->post('/', 'Login::proses');
+});
+
+$routes->group('register', ['filter' => 'guest'], function ($routes) {
+    $routes->get('/', 'Register::index');
+    $routes->post('/', 'Register::store');
+});
+
+$routes->group('mahasiswa', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'Mahasiswa::index');
+    $routes->get('/create', 'Mahasiswa::create');
+    $routes->post('/insert', 'Mahasiswa::store');
+    $routes->post('/search', 'Mahasiswa::search');
+    $routes->post('/hapus/(:num)', 'Mahasiswa::hapus/$1');
+    $routes->get('/edit/(:num)', 'Mahasiswa::edit/$1');
+    $routes->post('/update/(:num)', 'Mahasiswa::update/$1');
+    $routes->post('/editxml', 'Mahasiswa::editxml');
+    // $routes->get('/searchAjax', 'Mahasiswa::search_result');
+});
+
+$routes->post('/logout', 'Login::logout', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

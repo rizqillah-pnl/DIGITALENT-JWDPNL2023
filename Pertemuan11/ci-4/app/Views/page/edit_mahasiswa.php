@@ -6,7 +6,7 @@
 <form action="<?= base_url('/mahasiswa/update/'); ?>/<?= $id; ?>" method="post">
   <div class="mb-3">
     <label for="nim" class="form-label">NIM <span class="text-danger">*</span></label>
-    <input type="number" class="form-control <?= ($validation) ? ($validation->hasError('nim')) ? 'is-invalid' : '' : ''; ?>" maxlength="14" value="<?= $data['nim']; ?>" id="nim" name="nim" placeholder="Masukkan NIM" required>
+    <input type="number" class="form-control <?= ($validation) ? ($validation->hasError('nim')) ? 'is-invalid' : '' : ''; ?>" maxlength="14" minlength="9" value="<?= old('nim') ? old('nim') : $data['nim']; ?>" id="nim" name="nim" placeholder="Masukkan NIM" required>
     <input type="hidden" name="old_nim" value="<?= $data['nim']; ?>">
     <?php if ($validation) : ?>
       <?php if ($validation->hasError('nim')) : ?>
@@ -18,7 +18,7 @@
   </div>
   <div class="mb-3">
     <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
-    <input type="text" class="form-control <?= ($validation) ? ($validation->hasError('nama')) ? 'is-invalid' : '' : ''; ?>" value="<?= $data['nama']; ?>" id="nama" name="nama" placeholder="Masukkan Nama" required>
+    <input type="text" class="form-control <?= ($validation) ? ($validation->hasError('nama')) ? 'is-invalid' : '' : ''; ?>" value="<?= old('nama') ? old('nama') : $data['nama']; ?>" id="nama" name="nama" placeholder="Masukkan Nama" required>
     <?php if ($validation) : ?>
       <?php if ($validation->hasError('nama')) : ?>
         <div class="invalid-feedback">
@@ -32,8 +32,9 @@
     <?php $prodi = ['Teknik Informatika', 'Teknologi Rekayasa Keamanan Jaringan', 'Teknik Rekayasa Multimedia', 'Akuntansi'] ?>
     <select name="prodi" class="form-select <?= ($validation) ? ($validation->hasError('prodi')) ? 'is-invalid' : '' : ''; ?>" id="prodi" required>
       <option value="">--- Pilih Prodi ---</option>
+      <?php $old_prodi = old('prodi') ? old('prodi') : $data['prodi']; ?>
       <?php foreach ($prodi as $index => $row) : ?>
-        <?php if ($row == $data['prodi']) : ?>
+        <?php if ($row == $old_prodi) : ?>
           <option selected value="<?= $row; ?>"><?= $row; ?></option>
         <?php else : ?>
           <option value="<?= $row; ?>"><?= $row; ?></option>

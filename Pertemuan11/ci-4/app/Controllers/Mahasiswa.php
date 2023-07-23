@@ -14,11 +14,17 @@ class Mahasiswa extends BaseController
     }
     public function index()
     {
+        $search = $this->request->getVar('search');
+        if ($search) {
+            $mahasiswa = $this->mahasiswaModel->like('nim', $search)->orLike('nama', $search)->orLike('prodi', $search)->orderBy('created_at', 'desc')->paginate(10, 'mahasiswa');
+        } else {
+            $mahasiswa = $this->mahasiswaModel->orderBy('created_at', 'desc')->paginate(10, 'mahasiswa');
+        }
         $currentPage = $this->request->getVar('page_mahasiswa') ? $this->request->getVar('page_mahasiswa') : 1;
 
         $data = [
             'title' => 'Data Mahasiswa',
-            'mahasiswa' => $this->mahasiswaModel->orderBy('created_at', 'desc')->paginate(10, 'mahasiswa'),
+            'mahasiswa' => $mahasiswa,
             'pager' => $this->mahasiswaModel->pager,
             'currentPage' => $currentPage,
         ];
@@ -38,7 +44,7 @@ class Mahasiswa extends BaseController
     public function store()
     {
         $validated = $this->validate([
-            'nim' => "required|integer|is_unique[mahasiswa.nim]|max_length[14]",
+            'nim' => "required|integer|is_unique[mahasiswa.nim]|max_length[14]|min_length[9]",
             'nama'  => 'required',
             'prodi'  => 'required',
         ]);
@@ -72,7 +78,7 @@ class Mahasiswa extends BaseController
     {
         $unique = ($this->request->getVar('old_nim') != $this->request->getVar('nim')) ? "|is_unique[mahasiswa.nim]" : '';
         $validated = $this->validate([
-            'nim' => "required|integer|max_length[14]" . $unique,
+            'nim' => "required|integer|max_length[14]|min_length[9]" . $unique,
             'nama'  => 'required',
             'prodi'  => 'required',
         ]);

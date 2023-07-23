@@ -1,13 +1,13 @@
-var search = document.getElementById("search")
+var search = document.getElementById("search-ajax")
 var content = document.getElementById("content")
 
-search.addEventListener('keyup', function () {
-  $.post("/mahasiswa/searchAjax", {
-    search: search.value,
-  }, function (data) {
-    content.innerHTML = data;
-  });
-});
+// search.addEventListener('keyup', function () {
+//   $.post("/mahasiswa/searchAjax", {
+//     search: search.value,
+//   }, function (data) {
+//     content.innerHTML = data;
+//   });
+// });
 
 function editxml(key, id, kolom) {
   let val = document.getElementById(key + id);
@@ -79,3 +79,14 @@ function simpan(key, id, kolom, old_isi) {
   }
   document.getElementById(key + id).innerHTML = isi;
 }
+
+
+$('#show_password').click(function () {
+  if ($(this).is(':checked')) {
+    $('#password').attr('type', 'text');
+    $('#confirmation_password').attr('type', 'text');
+  } else {
+    $('#password').attr('type', 'password');
+    $('#confirmation_password').attr('type', 'password');
+  }
+});

@@ -7,7 +7,7 @@
   <?= csrf_field(); ?>
   <div class="mb-3">
     <label for="nim" class="form-label">NIM <span class="text-danger">*</span></label>
-    <input type="number" class="form-control <?= ($validation) ? ($validation->hasError('nim')) ? 'is-invalid' : '' : ''; ?>" maxlength="14" value="<?= old('nim'); ?>" id="nim" name="nim" placeholder="Masukkan NIM" required>
+    <input type="number" class="form-control <?= ($validation) ? ($validation->hasError('nim')) ? 'is-invalid' : '' : ''; ?>" maxlength="14" minlength="9" value="<?= old('nim'); ?>" id="nim" name="nim" placeholder="Masukkan NIM" required>
     <?php if ($validation) : ?>
       <?php if ($validation->hasError('nim')) : ?>
         <div class="invalid-feedback">
