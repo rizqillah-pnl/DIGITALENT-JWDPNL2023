@@ -42,15 +42,15 @@ $routes->group('register', ['filter' => 'guest'], function ($routes) {
 });
 
 $routes->group('mahasiswa', ['filter' => 'auth'], function ($routes) {
-    $routes->get('', 'Mahasiswa::index');
-    $routes->get('/create', 'Mahasiswa::create');
-    $routes->post('/insert', 'Mahasiswa::store');
-    $routes->post('/search', 'Mahasiswa::search');
-    $routes->post('/hapus/(:num)', 'Mahasiswa::hapus/$1');
-    $routes->get('/edit/(:num)', 'Mahasiswa::edit/$1');
-    $routes->post('/update/(:num)', 'Mahasiswa::update/$1');
-    $routes->post('/editxml', 'Mahasiswa::editxml');
-    // $routes->get('/searchAjax', 'Mahasiswa::search_result');
+    $routes->get('/', 'Mahasiswa::index');
+    $routes->get('create', 'Mahasiswa::create');
+    $routes->get('edit/(:num)', 'Mahasiswa::edit/$1');
+    $routes->post('insert', 'Mahasiswa::store');
+    $routes->post('hapus/(:num)', 'Mahasiswa::hapus/$1');
+    $routes->post('update/(:num)', 'Mahasiswa::update/$1');
+    $routes->post('editxml', 'Mahasiswa::editxml');
+    // $routes->post('search', 'Mahasiswa::search');
+    // $routes->get('searchAjax', 'Mahasiswa::search_result');
 });
 
 $routes->post('/logout', 'Login::logout', ['filter' => 'auth']);

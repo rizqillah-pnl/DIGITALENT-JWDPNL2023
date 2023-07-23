@@ -33,5 +33,6 @@
     <?php endif; ?>
   </tbody>
 </table>
-<p colspan="5">Showing <?= (1 + (10 * ($currentPage - 1))) . ' to ' . ((1 + (10 * ($currentPage - 1))) + count($mahasiswa)) - 1 . ' of ' . $pager->getDetails('mahasiswa')['total'] . ' entries'; ?> </p>
+<?php $jumData = (1 + (10 * ($currentPage - 1))); ?>
+<p colspan="5">Showing <?= $jumData . ' to ' . ($jumData) + count($mahasiswa) - 1 . ' of ' . $pager->getDetails('mahasiswa')['total'] . ' entries'; ?> </p>
 <?= $pager->links('mahasiswa', 'my_pager'); ?>

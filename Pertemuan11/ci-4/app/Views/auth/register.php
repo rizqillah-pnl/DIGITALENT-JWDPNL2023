@@ -2,7 +2,7 @@
 
 <?php $this->section('content') ?>
 <div class="row justify-content-center">
-  <div class="card col-6 bg-light mt-3 p-4">
+  <div class="card col-10 col-md-6 bg-light mt-3 p-4">
     <h1 class="text-center mb-3">Daftarkan Akun Anda!</h1>
     <?php if (session()->getFlashdata('msg')) : ?>
       <div class="col-12">
