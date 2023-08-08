@@ -12,6 +12,6 @@ class Home extends BaseController
         if ($user) {
             return redirect()->to('/mahasiswa');
         }
-        return redirect()->to('/login');
+        return view('page/index', ['title' => 'Landing Page']);
     }
 }
